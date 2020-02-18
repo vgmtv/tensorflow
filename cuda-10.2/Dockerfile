@@ -21,10 +21,11 @@ RUN apt-get install -y tmux vim htop tmux zsh git zip unzip
 
 RUN /bin/sh -c "conda update conda && conda init zsh"
 RUN /bin/zsh -c "source /root/.zshrc && conda activate tf"
-RUN echo "conda activate tf" >> ~/.bashrc && echo "condata activate tf" >> ~/.zshrc
+RUN echo "conda activate tf" >> ~/.bashrc && echo "conda activate tf" >> ~/.zshrc
 RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 RUN git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime && \
    sh ~/.vim_runtime/install_awesome_vimrc.sh
+RUN sed -i 's/robbyrussell/junkfood/g' /root/.zshrc
 
 EXPOSE 8888
 
